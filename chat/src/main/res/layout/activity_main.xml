@@ -10,7 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:divider="#0000"/>
+        android:listSelector="@android:color/transparent"
+        android:divider="#0000"
+        android:fastScrollEnabled="true"
+        android:scrollbarStyle="insideInset"
+        android:transcriptMode="normal"/>
 
     <LinearLayout
         android:layout_width="match_parent"

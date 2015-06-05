@@ -40,12 +40,12 @@ public class MsgAdapter extends ArrayAdapter<Msg>{
             viewHolder= (ViewHolder) view.getTag();
         }
         if (msg.getType()==Msg.TYPE_RECEIVED){
-            //Èç¹ûÊÇÊÕµ½µÄÏûÏ¢£¬ÔòÏÔÊ¾×ó±ßµÄÏûÏ¢²¼¾Ö£¬½«ÓÒ±ßµÄÏûÏ¢²¼¾ÖÒþ²Ø
+            //å¦‚æžœæ˜¯æ”¶åˆ°çš„æ¶ˆæ¯ï¼Œåˆ™æ˜¾ç¤ºå·¦è¾¹çš„æ¶ˆæ¯å¸ƒå±€ï¼Œå°†å³è¾¹çš„æ¶ˆæ¯å¸ƒå±€éšè—
             viewHolder.leftLayout.setVisibility(View.VISIBLE);
             viewHolder.rightLayout.setVisibility(View.GONE);
             viewHolder.leftMsg.setText(msg.getContent());
         }else{
-            //Èç¹ûÊÇ·¢³öµÄÏûÏ¢£¬ÔòÏÔÊ¾ÓÒ±ßµÄÏûÏ¢²¼¾Ö£¬½«×ó±ßµÄÏûÏ¢²¼¾ÖÒþ²Ø
+            //å¦‚æžœæ˜¯å‘å‡ºçš„æ¶ˆæ¯ï¼Œåˆ™æ˜¾ç¤ºå³è¾¹çš„æ¶ˆæ¯å¸ƒå±€ï¼Œå°†å·¦è¾¹çš„æ¶ˆæ¯å¸ƒå±€éšè—
             viewHolder.rightLayout.setVisibility(View.VISIBLE);
             viewHolder.leftLayout.setVisibility(View.GONE);
             viewHolder.rightMsg.setText(msg.getContent());

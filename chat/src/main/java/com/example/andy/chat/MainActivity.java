@@ -1,6 +1,7 @@
 package com.example.andy.chat;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -40,12 +42,14 @@ public class MainActivity extends Activity {
                 Gson gson=new Gson();
                 Bean bean=gson.fromJson(msg.obj.toString(),Bean.class);
 //                inputText.setText(bean.getText());
-                Msg ms1g=new Msg(bean.getText(),Msg.TYPE_SENT);
+                Msg ms1g=new Msg(bean.getText(),Msg.TYPE_RECEIVED);
                 msgList.add(ms1g);
                 adapter.notifyDataSetChanged();
             }
         };
-//        initMsgs();//³õÊ¼»¯ÏûÏ¢Êı¾İ
+//        initMsgs();//åˆå§‹åŒ–æ¶ˆæ¯æ•°æ®
+        Msg msg=new Msg("Hello guy! Are youé€—æ¯”æ€å¯†è¾¾ï¼Ÿ",Msg.TYPE_RECEIVED);
+        msgList.add(msg);
         adapter=new MsgAdapter(MainActivity.this,R.layout.msg_item,msgList);
         inputText= (EditText) findViewById(R.id.input_text);
         send= (Button) findViewById(R.id.send);
@@ -59,9 +63,14 @@ public class MainActivity extends Activity {
                     Msg msg=new Msg(content,Msg.TYPE_SENT);
                     msgList.add(msg);
                     HttpUtil.doGet(handler, content);
-                    adapter.notifyDataSetChanged();//µ±ÓĞĞÂÏûÏ¢Ê±£¬Ë¢ĞÂListViewÖĞµÄÏÔÊ¾
-                    msgListView.setSelection(msgList.size()); //½«ListView¶¨Î»µ½×îºóÒ»ĞĞ
-                    inputText.setText(""); //Çå¿ÕÊäÈë¿òÖĞµÄÄÚÈİ
+                    adapter.notifyDataSetChanged();//å½“æœ‰æ–°æ¶ˆæ¯æ—¶ï¼Œåˆ·æ–°ListViewä¸­çš„æ˜¾ç¤º
+                    msgListView.setSelection(msgList.size()); //å°†ListViewå®šä½åˆ°æœ€åä¸€è¡Œ
+                    inputText.setText(""); //æ¸…ç©ºè¾“å…¥æ¡†ä¸­çš„å†…å®¹
+                    InputMethodManager imm = (InputMethodManager) getApplicationContext()
+                            .getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm.isActive())  //ä¸€ç›´æ˜¯true
+                        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,
+                                InputMethodManager.HIDE_NOT_ALWAYS);
                 }
             }
         });

@@ -1,13 +1,13 @@
 package com.example.andy.chat;
 
 /**
- * Created by Íõ½Ü on 2015/6/4.
+ * Created by ç‹æ° on 2015/6/4.
  */
 public class Bean {
 
     /**
      * code : 100000
-     * text : ½²ÎÄÃ÷£¬Ê÷ĞÂ·ç
+     * text : è®²æ–‡æ˜ï¼Œæ ‘æ–°é£
      */
     private int code;
     private String text;
